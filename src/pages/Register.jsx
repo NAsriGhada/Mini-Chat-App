@@ -1,12 +1,32 @@
 import React from 'react'
+import {  createUserWithEmailAndPassword } from "firebase/auth";
+import {  auth } from "../firebase";
+
 
 const Register = () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    console.log(e.target[0].value)
+    const name = e.target[0].value
+    const email = e.target[1].value
+    const password = e.target[2].value
+    const file = e.target[3].value
+
+    try{
+      const res = createUserWithEmailAndPassword(auth, email, password)
+    }catch(err){
+      
+    }
+    
+
+  // e.target.reset();
+}
   return (
     <div className='formContainer'>
         <div className='formWrapper'>
             <span className='logo'>Chat App</span>
             <span className='title'>Register</span>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <input type="text" placeholder='name'/>
                 <input type="email" placeholder='email'/>
                 <input type="password" placeholder='password'/>
